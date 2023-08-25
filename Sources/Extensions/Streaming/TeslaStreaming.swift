@@ -176,6 +176,8 @@ public class TeslaStreaming {
                     logDebug("Stream reconnectSuggested: \(reconnect)", debuggingEnabled: self.debuggingEnabled)
                 case .cancelled:
                     logDebug("Stream cancelled", debuggingEnabled: self.debuggingEnabled)
+            case .peerClosed:
+                logDebug("Peer closed", debuggingEnabled: self.debuggingEnabled)
             }
         }
 		httpStreaming.connect()
