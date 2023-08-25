@@ -33,25 +33,26 @@ open class Vehicle: Codable {
 	open var tokens: [String]?
 	open var vehicleID: Int64?
 	open var vin: String?
-	
+    open var accessType: String?
+
 	// MARK: Codable protocol
 	
 	enum CodingKeys: String, CodingKey {
 		
-		case backseatToken			 = "backseat_token"
-		case backseatTokenUpdatedAt	 = "backseat_token_updated_at"
-		case calendarEnabled			 = "calendar_enabled"
-		case color					 = "color"
-		case displayName				 = "display_name"
-		case idInt						= "id"
-		case idS						 = "id_s"
-		case inService				 = "in_service"
-		case optionCodes				 = "option_codes"
-		case state					 = "state"
-		case tokens					 = "tokens"
-		case vehicleID				 = "vehicle_id"
-		case vin						 = "vin"
-
+		case backseatToken			= "backseat_token"
+		case backseatTokenUpdatedAt	= "backseat_token_updated_at"
+		case calendarEnabled		= "calendar_enabled"
+		case color					= "color"
+		case displayName			= "display_name"
+		case idInt					= "id"
+		case idS					= "id_s"
+		case inService				= "in_service"
+		case optionCodes		    = "option_codes"
+		case state					= "state"
+		case tokens					= "tokens"
+		case vehicleID				= "vehicle_id"
+		case vin				    = "vin"
+        case accessType             = "access_type"
 	}
 	
 	required public init(from decoder: Decoder) throws {
@@ -86,6 +87,7 @@ open class Vehicle: Codable {
 		tokens = try? container.decode([String].self, forKey: .tokens)
 		vehicleID = try? container.decode(Int64.self, forKey: .vehicleID)
 		vin = try? container.decode(String.self, forKey: .vin)
+        accessType = try? container.decodeIfPresent(String.self, forKey: .accessType)
 	}
 	
 	public func encode(to encoder: Encoder) throws {
@@ -104,7 +106,7 @@ open class Vehicle: Codable {
 		try container.encodeIfPresent(tokens, forKey: .tokens)
 		try container.encodeIfPresent(vehicleID, forKey: .vehicleID)
 		try container.encodeIfPresent(vin, forKey: .vin)
-		
+        try container.encodeIfPresent(accessType, forKey: .accessType)
 	}
 
 }
