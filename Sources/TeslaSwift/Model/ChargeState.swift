@@ -14,6 +14,7 @@ open class ChargeState: Codable {
 		case charging = "Charging"
 		case disconnected = "Disconnected"
 		case stopped = "Stopped"
+        case noPower = "NoPower"
 	}
     
     public enum ScheduledChargingTimes: String, Codable {
